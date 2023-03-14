@@ -63,3 +63,10 @@ Stop minikube:
 
 $ minikube stop
 
+Create Jar file and run it:
+
+$ ./gradlew bootJar
+
+$ java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar
+
+
