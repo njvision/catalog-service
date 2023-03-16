@@ -1,12 +1,8 @@
 package com.mdbookshop.catalogservice.domain;
 
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
-
-import javax.validation.Valid;
 
 @Service
-@Validated
 public class BookService {
 
     private final BookRepository bookRepository;
@@ -15,9 +11,6 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public Book validateBook(@Valid Book book) {
-        return book;
-    }
     public Iterable<Book> viewBookList() {
         return bookRepository.findAll();
     }
