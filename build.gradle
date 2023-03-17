@@ -14,14 +14,21 @@ repositories {
     maven { url 'https://repo.spring.io/snapshot' }
 }
 
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-validation')
-    implementation ('org.junit.jupiter:junit-jupiter:5.9.2')
+    implementation('org.junit.jupiter:junit-jupiter:5.9.2')
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'junit', module: 'junit'
     }
-    testImplementation ('org.springframework.boot:spring-boot-starter-webflux')
+    testImplementation('org.springframework.boot:spring-boot-starter-webflux')
+    annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')
 }
 
 tasks.named('test') {
