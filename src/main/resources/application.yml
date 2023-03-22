@@ -8,6 +8,9 @@ server:
       min-spare: 5
 
 spring:
+  sql:
+    init:
+      mode: always
   application:
     name: catalog-service
   config:
