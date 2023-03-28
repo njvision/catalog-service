@@ -69,4 +69,8 @@ $ ./gradlew bootJar
 
 $ java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar
 
+Build the image using Buildpacks
 
+$ ./gradlew bootBuildImage --imageName ghcr.io/<your_github_username>/catalog-service \
+--publishImage -PregistryUrl=ghcr.io -PregistryUsername=<your_github_username> \
+-PregistryToken=<your_github_token>
