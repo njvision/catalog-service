@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jdbc.core.JdbcAggregateTemplate;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,6 +27,25 @@ public class BookRepositoryJdbcTests {
 
     @Autowired
     private JdbcAggregateTemplate jdbcAggregateTemplate;
+
+    @Test
+    public void whenCreateBookNotAuthenticatedThenNoAuditMetadata() {
+        var book = Book.of("1234567893", "Title", "Author", 5.50, "Oraily");
+        Book savedBook = bookRepository.save(book);
+
+        assertThat(savedBook.createdBy()).isNull();
+        assertThat(savedBook.lastModifiedBy()).isNull();
+    }
+
+    @Test
+    @WithMockUser("adel")
+    public void whenCreateBookAuthenticatedThenAuditMetadata() {
+        var book = Book.of("1234567893", "Title", "Author", 5.50, "Oraily");
+        Book savedBook = bookRepository.save(book);
+
+        assertThat(savedBook.createdBy()).isEqualTo("adel");
+        assertThat(savedBook.lastModifiedBy()).isEqualTo("adel");
+    }
 
     @Test
     public void findAllBooks() {
