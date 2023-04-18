@@ -1,7 +1,7 @@
 package com.mdbookshop.catalogservice.domain;
 
 import com.mdbookshop.catalogservice.config.DataConfig;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -20,7 +20,7 @@ import java.util.stream.StreamSupport;
 @Import(DataConfig.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("integration")
-public class BookRepositoryJdbcTests {
+class BookRepositoryJdbcTests {
 
     @Autowired
     private BookRepository bookRepository;
@@ -82,6 +82,7 @@ public class BookRepositoryJdbcTests {
     public void existsByIsbnWhenExisting() {
         var bookIsbn = "1234567897";
         var book = Book.of(bookIsbn, "Title", "Author", 5.50, "Oraily");
+        jdbcAggregateTemplate.insert(book);
 
         boolean checkExistence = bookRepository.existsByIsbn(bookIsbn);
 
