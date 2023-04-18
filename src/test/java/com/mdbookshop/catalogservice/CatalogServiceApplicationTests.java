@@ -135,7 +135,8 @@ class CatalogServiceApplicationTests {
                 })
                 .returnResult().getResponseBody();
         var updatedBook = new Book(bookExpected.id(), bookExpected.isbn(), bookExpected.title(), bookExpected.author(), 5.55,
-                bookExpected.publisher(), bookExpected.createdDate(), bookExpected.lastModifiedDate(), bookExpected.version());
+                bookExpected.publisher(), bookExpected.createdDate(), bookExpected.lastModifiedDate(), bookExpected.createdBy(),
+                bookExpected.lastModifiedBy(),bookExpected.version());
 
         webTestClient
                 .put()
