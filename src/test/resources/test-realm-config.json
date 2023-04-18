@@ -90,7 +90,7 @@
       "attributes" : { }
     } ],
     "client" : {
-      "polar-test" : [ ],
+      "md-test" : [ ],
       "realm-management" : [ {
         "id" : "40e89ab3-1dd1-46ed-83e4-001b1bbabda9",
         "name" : "manage-events",
@@ -556,7 +556,7 @@
     "enabled" : true,
     "alwaysDisplayInConsole" : false,
     "clientAuthenticatorType" : "client-secret",
-    "secret" : "polar-keycloak-secret",
+    "secret" : "md-keycloak-secret",
     "redirectUris" : [ "http://localhost:9000/login/oauth2/code/*", "http://localhost:9000" ],
     "webOrigins" : [ "http://localhost:9000" ],
     "notBefore" : 0,
@@ -577,7 +577,7 @@
     "optionalClientScopes" : [ "address", "phone", "offline_access", "microprofile-jwt" ]
   }, {
     "id" : "e6386b02-4478-4aab-a8ab-e0898982e782",
-    "clientId" : "polar-test",
+    "clientId" : "md-test",
     "surrogateAuthRequired" : false,
     "enabled" : true,
     "alwaysDisplayInConsole" : false,
