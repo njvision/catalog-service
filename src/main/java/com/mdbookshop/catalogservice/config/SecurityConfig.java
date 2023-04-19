@@ -17,9 +17,9 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .authorizeHttpRequests(authorize ->
-                        authorize.mvcMatchers(HttpMethod.GET, "/", "/books/**")
-                                .permitAll()
+                .authorizeHttpRequests(authorize -> authorize
+                                .mvcMatchers("/actuator/**").permitAll()
+                                .mvcMatchers(HttpMethod.GET, "/", "/books/**").permitAll()
                                 .anyRequest().hasRole("employee"))
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement(sessionManagement -> sessionManagement
