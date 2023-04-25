@@ -38,18 +38,27 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8080/realms/MdBookshop
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+
+info:
+  system: Md Bookshop
 
 management:
   endpoints:
     web:
       exposure:
-        include: health
+        include: health, prometheus
   endpoint:
     health:
       show-details: always
       show-components: always
       probes:
         enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 md:
   greeting: Welcome to the local book catalog!
