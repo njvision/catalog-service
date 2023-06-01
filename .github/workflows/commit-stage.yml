@@ -45,7 +45,6 @@ jobs:
           kubeval: 0.16.1
           command: |
             kustomize build k8s | kubeval --strict -
-            kubeval --strict -d k8s
   package:
     name: Package and Publish
     if: ${{ github.ref == 'refs/heads/main' }}
