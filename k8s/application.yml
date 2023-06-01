@@ -1,0 +1,10 @@
+md:
+  greeting: Welcome to the book catalog from a development Kubernetes environment!
+spring:
+  datasource:
+    url: jdbc:postgresql://md-postgres/mddb_catalog
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://md-keycloak/realms/MdBookshop
