@@ -31,12 +31,8 @@ spec:
           env:
             - name: BPL_JVM_THREAD_COUNT
               value: "50"
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://md-postgres/mddb_catalog
             - name: SPRING_PROFILES_ACTIVE
               value: testdata
-            - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
-              value: http://md-keycloak/realms/MdBookshop
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
@@ -48,4 +44,11 @@ spec:
               path: /actuator/health/readiness
               port: 9001
             initialDelaySeconds: 5
-            periodSeconds: 15 
+            periodSeconds: 15
+          volumeMounts:
+            - name: catalog-config-volume
+              mountPath: /workspace/config
+      volumes:
+        - name: catalog-config-volume
+          configMap:
+            name: catalog-config
